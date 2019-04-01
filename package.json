@@ -1,0 +1,55 @@
+{
+  "name": "@tangany/laaxsnowhack-crypto-sdk",
+  "version": "0.0.0",
+  "description": "Simple crypto development kit based on the Tangany Wallet as a Service API",
+  "main": "dist/index.js",
+  "types": "lib/index.d.ts",
+  "files": [
+    "dist/**/*"
+  ],
+  "scripts": {
+    "test": "mocha src/**/*.spec.ts",
+    "lint": "tslint -p ./tsconfig.json",
+    "lint:fix": "npm run lint -- --fix",
+    "build": "rimraf dist/* && tsc -p tsconfig.json",
+    "prepare": "npm run lint:fix && npm run build",
+    "prepublishOnly": "npm test && npm run lint",
+    "postversion": "node postversion.js && git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Tangany/laaxsnowhack-crypto-sdk.git"
+  },
+  "keywords": [
+    "ethereum",
+    "laaxsnowhack",
+    "iot",
+    "tangany",
+    "wallet as a service"
+  ],
+  "author": "Alexey Utin <developers@tangany.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Tangany/laaxsnowhack-crypto-sdk/issues"
+  },
+  "homepage": "https://tagany.com",
+  "devDependencies": {
+    "@types/debug": "^4.1.3",
+    "@types/mocha": "^5.2.6",
+    "@types/moxios": "^0.4.8",
+    "@types/node": "^11.12.2",
+    "@types/sinon": "^7.0.11",
+    "backend-tslint-rules": "^1.12.1",
+    "mocha": "^6.0.2",
+    "moxios": "^0.4.0",
+    "rimraf": "^2.6.3",
+    "sinon": "^7.3.1",
+    "ts-node": "^8.0.3",
+    "tslint": "^5.14.0",
+    "typescript": "^3.4.1"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "debug": "^4.1.1"
+  }
+}
