@@ -12,7 +12,7 @@ A sample nodejs integration of the [Tangany Wallet as a Service API](https://tan
 ## Get started
 Install the package
 ```
-npm install @tangany/laaxsnowhack-cryptio-sdk
+npm install @tangany/laaxsnowhack-crypto-sdk
 ```
 
 Set the [auth](#authentication) environment headers & require the main module

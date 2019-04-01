@@ -14,7 +14,8 @@
     "build": "rimraf dist/* && tsc -p tsconfig.json",
     "prepare": "npm run lint:fix && npm run build",
     "prepublishOnly": "npm test && npm run lint",
-    "postversion": "node postversion.js && git add * && git push && git push --tags"
+    "postversion": "node postversion.js && git add * && git push && git push --tags",
+    "pub": "npm publish --access public"
   },
   "repository": {
     "type": "git",
