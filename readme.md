@@ -64,3 +64,23 @@ DEBUG=laaxsnowhack-crypto-sdk:*
 
 ## API documentation
 https://tangany.docs.stoplight.io/
+
+***
+<div align="center">
+<p>   
+<img src="https://raw.githubusercontent.com/Tangany/cloud-wallet/master/docs/logo.svg?sanitize=true"  alt="Tangany" height="50" align="middle" />  
+</p>
+<p>
+© 2019 <a href="https://tangany.com">Tangany</a>
+</p>
+<p>
+ <a href="https://tangany.com/imprint/">Imprint</a>
+• <a href="https://tangany.com/imprint/">Privacy policy</a>
+• <a href="https://tangany.com#newsletter">Newsletter</a>
+• <a href="https://twitter.com/tangany_wallet">Twitter</a>
+• <a href="https://www.facebook.com/tanganywallet">Facebook</a>
+• <a href="https://www.linkedin.com/company/tangany/">LinkedIn</a>
+• <a href="https://www.youtube.com/channel/UCmDr1clodG1ov-iX_GMkwMA">YouTube</a>
+• <a href="https://github.com/Tangany/">Github</a>
+</p>
+</div>
