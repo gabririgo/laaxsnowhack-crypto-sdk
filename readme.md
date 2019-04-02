@@ -55,7 +55,7 @@ DEBUG=laaxsnowhack-crypto-sdk:*
 ```
 
 ## API documentation
-Availalbe at https://tangany.docs.stoplight.io/
+Available at https://tangany.docs.stoplight.io/
 
 ***
 <div align="center">

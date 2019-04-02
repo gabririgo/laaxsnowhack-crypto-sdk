@@ -2,6 +2,7 @@ import {WaasApi} from "./waas-api";
 import * as assert from "assert";
 import {createSandbox} from "sinon";
 import * as moxios from "moxios";
+import {ConflictError} from "./errors/conflict-error";
 
 describe("WaasApi", function () {
 
@@ -78,7 +79,9 @@ describe("WaasApi", function () {
                 await w.createWallet("ae5de2d7-6314-463e-a470-0a47812fcbec");
                 assert.fail("should have thrown");
             } catch (e) {
-                assert.ok(e instanceof Error);
+                console.log(e);
+                assert.strictEqual(e.status, 409);
+                assert.ok(e instanceof ConflictError);
             }
         });
 
