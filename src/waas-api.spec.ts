@@ -4,23 +4,18 @@ import {createSandbox} from "sinon";
 import * as moxios from "moxios";
 
 describe("WaasApi", function () {
+
+    const CLIENT_ID = "1",
+        CLIENT_SECRET = "2",
+        SUBSCRIPTION = "3"
+    ;
     beforeEach(function () {
 
         this.sandbox = createSandbox({
             useFakeServer: true,
         });
 
-        const env = {
-            CLIENT_ID: "1",
-            CLIENT_SECRET: "2",
-            SUBSCRIPTION: "3",
-        };
-
-        const o = {...process.env, ...env};
-
-        this.sandbox.stub(process, "env").value(o);
         moxios.install();
-
     });
 
     afterEach(function () {
@@ -29,19 +24,19 @@ describe("WaasApi", function () {
     });
 
     it("should construct an instance", function () {
-        const w = new WaasApi();
+        const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
         assert.ok(w instanceof WaasApi);
     });
 
     it("should throw on missing auth params", function () {
         this.sandbox.stub(process, "env").value({});
-        assert.throws(() => new WaasApi());
+        assert.throws(() => new WaasApi(CLIENT_ID, "", ""));
     });
 
     describe("createWallet", function () {
 
         it("should respond with a new wallet", async function () {
-            const w = new WaasApi();
+            const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
             moxios.wait(() =>
                 moxios.requests.mostRecent()
                     .respondWith({
@@ -61,12 +56,12 @@ describe("WaasApi", function () {
         });
 
         it("should fail due to missing wallet name", async function () {
-            const w = new WaasApi();
+            const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
             await assert.rejects(async () => w.createWallet(""));
         });
 
         it("should fail due to occupied wallet name", async function () {
-            const w = new WaasApi();
+            const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
             moxios.wait(() =>
                 moxios.requests.mostRecent()
                     .respondWith({

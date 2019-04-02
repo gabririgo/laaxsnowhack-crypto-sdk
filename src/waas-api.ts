@@ -74,31 +74,30 @@ export class WaasApi {
 
     private readonly instance: AxiosInstance;
 
-    constructor() {
+    /**
+     * @param clientId - subscription client id
+     * @param clientSecret - subscription client secret
+     * @param subscription - subscription code
+     */
+    constructor(clientId: string, clientSecret: string, subscription: string) {
 
-        const env = {
-            clientId: process.env.CLIENT_ID,
-            clientSecret: process.env.CLIENT_SECRET,
-            subscription: process.env.SUBSCRIPTION,
-        };
-
-        if (!env.clientId) {
-            throw new Error("missing environment variable CLIENT_ID");
+        if (!clientId) {
+            throw new Error("missing variable clientId");
         }
-        if (!env.clientSecret) {
-            throw new Error("missing environment variable CLIENT_SECRET");
+        if (!clientSecret) {
+            throw new Error("missing variable clientSecret");
         }
-        if (!env.subscription) {
-            throw new Error("missing environment variable SUBSCRIPTION");
+        if (!subscription) {
+            throw new Error("missing variable subscription");
         }
 
         this.instance = axios.create({
             baseURL: "https://api.tangany.com/v1/",
             timeout: 20000,
             headers: {
-                "tangany-client-id": env.clientId,
-                "tangany-client-secret": env.clientSecret,
-                "tangany-subscription": env.subscription,
+                "tangany-client-id": clientId,
+                "tangany-client-secret": clientSecret,
+                "tangany-subscription": subscription,
                 "common": {
                     Accept: "application/json",
                 },

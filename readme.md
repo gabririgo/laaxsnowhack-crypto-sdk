@@ -15,25 +15,29 @@ Install the package
 npm install @tangany/laaxsnowhack-crypto-sdk
 ```
 
-Set the [auth](#authentication) environment headers & require the main module
+Import the main module
 ```javascript
 const { WaasApi } = require("@tangany/laaxsnowhack-crypto-sdk");
 
-// set the environment variables from .env file
+// set the environment variables
 const dotenv = require("dotenv");
 dotenv.config();
 
-(async () => {
-    const api = new WaasApi();
-    let skiptoken = undefined;
+/**
+ * fetch all client wallets
+ * @see https://tangany.docs.stoplight.io/api/wallet/list-wallet
+ */
+async function listWallet (_skiptoken) {
+    const data = (await api.listWallets(_skiptoken)).data;
+    skiptoken = data.skiptoken;
     
-    // https://tangany.docs.stoplight.io/api/wallet/list-wallets
-    const listWallet = async _skiptoken => {
-        const data = (await api.listWallets(_skiptoken)).data;
-        skiptoken = data.skiptoken ? data.skiptoken : undefined;
-        
-        return data.list;
-    };
+    return data.list;
+}
+
+(async () => {
+    // auth an instance
+    const api = new WaasApi(process.env.CLIENT_ID, process.env.CLIENT_SECRET, process.env.SUBSCRIPTION);
+    let skiptoken = undefined;
     
     do {
         // fetch wallets until no skiptoken is returned in the response
@@ -42,28 +46,16 @@ dotenv.config();
     }
     while (!!skiptoken);
 })();
-
-
 ```
 
-## Authentication
-Add following environment variables to authorize the api requests
-
-ENV|description
----|---
-CLIENT_ID| service clientId
-CLIENT_SECRET| service clientSecret 
-SUBSCRIPTION| service subscription
-
 ## Debugging
-
 To log the axios HTTP requests, add following environment variable
 ```
 DEBUG=laaxsnowhack-crypto-sdk:*
 ```
 
 ## API documentation
-https://tangany.docs.stoplight.io/
+Availalbe at https://tangany.docs.stoplight.io/
 
 ***
 <div align="center">
