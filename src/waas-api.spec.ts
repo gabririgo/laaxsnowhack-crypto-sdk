@@ -107,4 +107,7 @@ describe("WaasApi", function () {
         // todo
     });
 
+    describe("sendToken", function () {
+        // todo
+    });
 });

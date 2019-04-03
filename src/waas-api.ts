@@ -19,6 +19,10 @@ enum WalletVersion {
     LATEST = "latest",
 }
 
+enum KnownTokens {
+    WT = "0x4eCc65e392Eb078926BbE36D5C46e6824B14950a",
+}
+
 /**
  * represents a wallet
  */
@@ -61,6 +65,13 @@ interface ISoftDeletedWallet {
 interface ITokenBalance {
     balance: string;
     currency: string;
+}
+
+/**
+ * represents a wallet list operation
+ */
+interface ITransaction {
+    hash: string;
 }
 
 async function catch404(e: AxiosError): Promise<AxiosResponse> {
@@ -231,4 +242,19 @@ export class WaasApi {
             ;
     }
 
+    /**
+     * send erc20 tokens to a recipient address
+     * @param walletName - name of the wallet to send tokens from,
+     * @param recipientAddress - ethereum address of the token recipient. Not to confuse with the token address,
+     * @param tokenAddress - ethereum contract address of the erc20 token.
+     * @param amount - float amount of tokens formatted as string
+     */
+    public async sendToken(walletName: string, recipientAddress: string, tokenAddress: KnownTokens | string, amount: string): Promise<AxiosResponse<ITransaction>> {
+        return this.instance
+            .post(`eth/erc20/${tokenAddress}/${walletName}`, {
+                to: recipientAddress,
+                amount,
+            })
+            ;
+    }
 }
