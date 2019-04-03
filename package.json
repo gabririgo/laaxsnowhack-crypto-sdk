@@ -1,6 +1,6 @@
 {
   "name": "@tangany/laaxsnowhack-crypto-sdk",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Simple crypto development kit based on the Tangany Wallet as a Service API",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
