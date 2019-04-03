@@ -251,7 +251,7 @@ export class WaasApi {
      */
     public async sendToken(walletName: string, recipientAddress: string, tokenAddress: KnownTokens | string, amount: string): Promise<AxiosResponse<ITransaction>> {
         return this.instance
-            .post(`eth/erc20/${tokenAddress}/${walletName}`, {
+            .post(`eth/erc20/${tokenAddress}/${walletName}/send`, {
                 to: recipientAddress,
                 amount,
             })
