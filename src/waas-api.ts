@@ -259,4 +259,18 @@ export class WaasApi {
             })
             ;
     }
+
+    /**
+     * mint a few tokens to the wallet address
+     * @param walletName - name of the wallet to send tokens from,
+     * @param tokenAddress - ethereum contract address of the erc20 token.
+     * @param amount - float amount of tokens formatted as string
+     */
+    public async mintToken(walletName: string, tokenAddress: KnownTokens | string, amount: string): Promise<AxiosResponse<ITransaction>> {
+        return this.instance
+            .post(`eth/erc20/${tokenAddress}/${walletName}/mint`, {
+                amount,
+            })
+            ;
+    }
 }
