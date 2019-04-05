@@ -20,7 +20,7 @@ enum WalletVersion {
 }
 
 enum KnownTokens {
-    WT = "0x4eCc65e392Eb078926BbE36D5C46e6824B14950a",
+    WT = "0xeC820c7Fadb1139f855477E626CaE5Efa304227d",
 }
 
 /**

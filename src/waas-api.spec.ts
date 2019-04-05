@@ -110,4 +110,8 @@ describe("WaasApi", function () {
     describe("sendToken", function () {
         // todo
     });
+
+    describe("mintToken", function () {
+        // todo
+    });
 });
