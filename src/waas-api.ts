@@ -102,8 +102,8 @@ export class WaasApi {
             throw new Error("missing variable subscription");
         }
 
-        this.instance = axios.create({
-            baseURL: "https://api.tangany.com/v1/",
+        const api = {
+            baseURL: "https://api.tangany.com/beta/",
             timeout: 20000,
             headers: {
                 "tangany-client-id": clientId,
@@ -114,7 +114,9 @@ export class WaasApi {
                 },
             },
             responseType: "json",
-        });
+        };
+
+        this.instance = axios.create(api);
 
         this.instance.interceptors.response.use((response: AxiosResponse) => {
             debug("interceptors.response");
