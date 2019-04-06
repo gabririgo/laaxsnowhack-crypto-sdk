@@ -127,4 +127,21 @@ describe("WaasApi", function () {
             assert.ok(hash);
         });
     });
+
+    describe("approve", function () {
+        it("should respond with an approve hash", async function () {
+            const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
+            moxios.wait(() =>
+                moxios.requests.mostRecent()
+                    .respondWith({
+                        status: 202,
+                        response: {
+                            hash: "0xb7381f478aa822bbcf661589ca9636afdf0a7db49dd978c35dc595471558c4a6",
+                        },
+                    }), 20);
+
+            const {hash} = (await w.mintToken("func-spec", KnownTokens.WT, "3")).data;
+            assert.ok(hash);
+        });
+    });
 });

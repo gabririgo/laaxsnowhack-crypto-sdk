@@ -273,4 +273,20 @@ export class WaasApi {
             })
             ;
     }
+
+    /**
+     * approve token withdrawal to given address
+     * @param walletName - name of the wallet to send tokens from,
+     * @param tokenAddress - ethereum contract address of the erc20 token.
+     * @param to - address that may withdraw the approved amount of tokens from wallet
+     * @param amount - float amount of tokens formatted as string
+     */
+    public async approve(walletName: string, tokenAddress: KnownTokens | string, to: string, amount: string): Promise<AxiosResponse<ITransaction>> {
+        return this.instance
+            .post(`eth/erc20/${tokenAddress}/${walletName}/approve`, {
+                to,
+                amount,
+            })
+            ;
+    }
 }
