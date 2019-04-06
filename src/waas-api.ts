@@ -74,6 +74,14 @@ interface ITransaction {
     hash: string;
 }
 
+/**
+ * represents transaction status
+ */
+interface ITransactionStatus {
+    isError: boolean;
+    blockNr: number | null;
+}
+
 async function catch404(e: AxiosError): Promise<AxiosResponse> {
     if (e.response && e.response.status === 404) {
         throw new NotFoundError("Wallet not found for given name");
@@ -288,5 +296,13 @@ export class WaasApi {
                 amount,
             })
             ;
+    }
+
+    /**
+     * returns if the given transaction is mined (assigned blockNr) or faulty (isError == true)
+     * @param txHash - transaction hash
+     */
+    public async checkMined(txHash: string): Promise<AxiosResponse<ITransactionStatus>> {
+        return this.instance.get(`eth/transaction/${txHash}`);
     }
 }

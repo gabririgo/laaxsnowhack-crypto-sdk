@@ -144,4 +144,8 @@ describe("WaasApi", function () {
             assert.ok(hash);
         });
     });
+
+    describe("checkMined", function () {
+        // todo
+    });
 });
