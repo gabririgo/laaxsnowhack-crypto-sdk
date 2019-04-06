@@ -1,4 +1,4 @@
-import {WaasApi} from "./waas-api";
+import {KnownTokens, WaasApi} from "./waas-api";
 import * as assert from "assert";
 import {createSandbox} from "sinon";
 import * as moxios from "moxios";
@@ -112,6 +112,19 @@ describe("WaasApi", function () {
     });
 
     describe("mintToken", function () {
-        // todo
+        it("should respond with a mint hash", async function () {
+            const w = new WaasApi(CLIENT_ID, CLIENT_SECRET, SUBSCRIPTION);
+            moxios.wait(() =>
+                moxios.requests.mostRecent()
+                    .respondWith({
+                        status: 202,
+                        response: {
+                            hash: "0xd4f74cc0d08a090484cd36f2763e3ba9a62a928f90da83e66e5ff528e036f2a2",
+                        },
+                    }), 20);
+
+            const {hash} = (await w.mintToken("func-spec", KnownTokens.WT, "3")).data;
+            assert.ok(hash);
+        });
     });
 });

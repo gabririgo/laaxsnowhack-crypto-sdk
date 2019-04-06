@@ -15,11 +15,11 @@ enum WalletSecurity {
     HSM = "hsm",
 }
 
-enum WalletVersion {
+export enum WalletVersion {
     LATEST = "latest",
 }
 
-enum KnownTokens {
+export enum KnownTokens {
     WT = "0xeC820c7Fadb1139f855477E626CaE5Efa304227d",
 }
 
