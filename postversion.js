@@ -5,7 +5,7 @@ const
     , destination = path.resolve(__dirname, "docs", fileName)
     , { version } = require("./package")
     , axios = require("axios")
-    , url = `https://img.shields.io/static/v1.svg?label=npm&message=1.2.0-0&color=blue&style=flat-square`
+    , url = `https://img.shields.io/static/v1.svg?label=npm&message=${version}&color=blue&style=flat-square`
 ;
 
 const writeStream = fs.createWriteStream(destination);
